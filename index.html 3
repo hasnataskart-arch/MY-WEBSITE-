@@ -1,0 +1,42 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Alhambra</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>La Alhambra</h1>
+    <p>Authentic Mediterranean Experience</p>
+  </header>
+
+  <section class="gallery">
+    <img src="https://cdn.pixabay.com/photo/2017/03/27/14/56/tajine-2178863_1280.jpg" alt="Moroccan Tagine"/>
+    <img src="https://cdn.pixabay.com/photo/2021/07/06/08/59/kebab-6390120_1280.jpg" alt="Lamb Kebabs"/>
+    <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/couscous-1238242_1280.jpg" alt="Couscous Salad"/>
+    <img src="https://cdn.pixabay.com/photo/2020/05/05/06/01/tea-5131252_1280.jpg" alt="Moroccan Tea"/>
+    <img src="https://cdn.pixabay.com/photo/2016/11/29/10/45/baklava-1869591_1280.jpg" alt="Baklava"/>
+  </section>
+
+  <section class="menu">
+    <h2>Menu</h2>
+    <ul>
+      <li><strong>Moroccan Tagine</strong> – €14,50</li>
+      <li><strong>Lamb Kebabs</strong> – €16,00</li>
+      <li><strong>Chicken Skewers</strong> – €13,50</li>
+<li><strong>Couscous Salad</strong> – €9,00</li>
+      <li><strong>Fattoush</strong> – €8,50</li>
+      <li><strong>Baklava</strong> – €6,00</li>
+      <li><strong>Almond Briouat</strong> – €5,50</li>
+      <li><strong>Moroccan Tea</strong> – €3,00</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>©️ 2025 La Alhambra. All rights reserved.</p>
+  </footer>
+</body>
+</html>
