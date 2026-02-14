@@ -1,191 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>La Dársena | Restaurante en Avilés</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Restaurante La Dársena en Avilés. Cocina tradicional asturiana con un toque moderno. Reserva tu mesa.">
-    
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Dársena | Restaurante en Avilés</title>
 
-        header {
-            background: url('https://images.unsplash.com/photo-1555992336-03a23c3c9a8b') center/cover no-repeat;
-            height: 90vh;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        header h1 {
-            font-size: 3.5em;
-            margin: 0;
-        }
+body{
+font-family: 'Segoe UI', sans-serif;
+background:#fafafa;
+color:#333;
+}
 
-        header p {
-            font-size: 1.5em;
-        }
+nav{
+background:#111;
+padding:18px;
+text-align:center;
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+}
 
-        .btn {
-            background-color: #b22222;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            display: inline-block;
-        }
+nav a{
+color:white;
+margin:0 20px;
+text-decoration:none;
+font-weight:600;
+}
 
-        nav {
-            background-color: #222;
-            padding: 15px;
-            text-align: center;
-        }
+header{
+background:url('https://images.unsplash.com/photo-1555992336-03a23c3c9a8b?auto=format&fit=crop&w=1400&q=80') center/cover;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding-top:80px;
+}
 
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+header h1{
+font-size:60px;
+letter-spacing:2px;
+}
 
-        section {
-            padding: 60px 20px;
-            max-width: 1100px;
-            margin: auto;
-        }
+header p{
+font-size:22px;
+margin-top:15px;
+}
 
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #b22222;
-        }
+.btn{
+background:#b22222;
+color:white;
+padding:15px 35px;
+margin-top:25px;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+transition:0.3s;
+}
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+.btn:hover{
+background:#8b0000;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
+section{
+padding:100px 20px;
+max-width:1100px;
+margin:auto;
+}
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: auto;
-        }
+h2{
+text-align:center;
+margin-bottom:50px;
+color:#b22222;
+font-size:32px;
+}
 
-        input, textarea {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
 
-        footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+text-align:center;
+}
 
-        iframe {
-            width: 100%;
-            height: 350px;
-            border: none;
-            border-radius: 8px;
-        }
-    </style>
+.card h3{
+margin-bottom:15px;
+color:#b22222;
+}
+
+#horario{
+text-align:center;
+font-size:18px;
+}
+
+iframe{
+width:100%;
+height:350px;
+border:0;
+border-radius:10px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 25px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:60px;
+}
+</style>
 </head>
 
 <body>
 
 <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#nosotros">Nosotros</a>
-    <a href="#menu">Carta</a>
-    <a href="#reservas">Reservas</a>
-    <a href="#contacto">Contacto</a>
+<a href="#inicio">Inicio</a>
+<a href="#menu">Carta</a>
+<a href="#horario">Horario</a>
+<a href="#contacto">Contacto</a>
 </nav>
 
 <header id="inicio">
-    <h1>La Dársena</h1>
-    <p>Cocina tradicional asturiana con un toque moderno</p>
-    <a href="#reservas" class="btn">Reservar Mesa</a>
+<h1>La Dársena</h1>
+<p>Cocina tradicional asturiana en Avilés</p>
+<a href="https://wa.me/34984490369" class="btn">Reservar por WhatsApp</a>
 </header>
 
-<section id="nosotros">
-    <h2>Sobre Nosotros</h2>
-    <p>
-        Ubicado en el corazón de Avilés, La Dársena ofrece una experiencia gastronómica basada 
-        en la tradición asturiana con ingredientes frescos y de calidad. 
-        Un espacio acogedor ideal para comidas familiares, cenas románticas o celebraciones especiales.
-    </p>
-</section>
-
 <section id="menu">
-    <h2>Nuestra Carta</h2>
-    <div class="menu-grid">
-        <div class="card">
-            <h3>Entrantes</h3>
-            <p>Croquetas caseras</p>
-            <p>Tabla de quesos asturianos</p>
-            <p>Ensalada especial de la casa</p>
-        </div>
-        <div class="card">
-            <h3>Platos Principales</h3>
-            <p>Fabada asturiana</p>
-            <p>Entrecot a la parrilla</p>
-            <p>Pescado fresco del Cantábrico</p>
-        </div>
-        <div class="card">
-            <h3>Postres</h3>
-            <p>Tarta de queso casera</p>
-            <p>Arroz con leche</p>
-            <p>Helados artesanales</p>
-        </div>
-    </div>
+<h2>Nuestra Carta</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Entrantes</h3>
+<p>Croquetas caseras</p>
+<p>Tabla de quesos asturianos</p>
+<p>Ensaladas frescas</p>
+</div>
+
+<div class="card">
+<h3>Platos principales</h3>
+<p>Fabada asturiana</p>
+<p>Entrecot a la parrilla</p>
+<p>Pescado del Cantábrico</p>
+</div>
+
+<div class="card">
+<h3>Postres</h3>
+<p>Tarta de queso</p>
+<p>Arroz con leche</p>
+<p>Helados artesanales</p>
+</div>
+
+</div>
 </section>
 
-<section id="reservas">
-    <h2>Reservas</h2>
-    <form>
-        <input type="text" placeholder="Nombre completo" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <input type="date" required>
-        <input type="time" required>
-        <input type="number" placeholder="Número de personas" required>
-        <button class="btn">Enviar Reserva</button>
-    </form>
+<section id="horario">
+<h2>Horario</h2>
+<p>Lunes a Domingo</p>
+<p>10:00 – 23:30</p>
+<p>Teléfono: +34 984 49 03 69</p>
 </section>
 
 <section id="contacto">
-    <h2>Contacto</h2>
-    <p><strong>Dirección:</strong> Calle Llano Ponte, 7 – 33402 Avilés, Asturias</p>
-    <p><strong>Teléfono:</strong> +34 984 49 03 69</p>
-    <p><strong>Email:</strong> info@darsenarestaurante.com</p>
+<h2>Contacto</h2>
+<p><strong>Dirección:</strong> Calle Llano Ponte 7, Avilés, Asturias</p>
+<p><strong>Email:</strong> info@darsenarestaurante.com</p>
 
-    <iframe 
-        src="https://www.google.com/maps?q=La+Dársena+Avilés&output=embed">
-    </iframe>
+<iframe src="https://www.google.com/maps?q=Calle+Llano+Ponte+7,+Avilés&output=embed"></iframe>
 </section>
 
+<a class="whatsapp" href="https://wa.me/34984490369">
+WhatsApp
+</a>
+
 <footer>
-    <p>© 2026 La Dársena | Restaurante en Avilés</p>
+<p>© 2026 La Dársena | Todos los derechos reservados</p>
 </footer>
 
 </body>
 </html>
+
