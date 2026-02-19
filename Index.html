@@ -1,0 +1,219 @@
+1<!DOCTYPE html>
+2<html lang="en">
+3<head>
+4    <meta charset="UTF-8">
+5    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6    <title>WhatsApp Tracker Demo</title>
+7    <style>
+8        :root {
+9            --primary: #25D366;
+10            --dark: #075E54;
+11            --light: #DCF8C6;
+12            --gray: #999;
+13        }
+14        body {
+15            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-color: #ece-serif;
+16            background5dd;
+17            display: flex;
+18            justify-content: center;
+19            padding-top: 50px;
+20        }
+21        .container {
+22            width: 400px;
+23            background: white;
+24            border-radius: 10px;
+25            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+26            overflow: hidden;
+27        }
+28        .header {
+29            background: var(--dark);
+30            color: white;
+31            padding: 15px;
+32            display: flex;
+33            align-items: center;
+34            gap: 10px;
+35        }
+36        .avatar {
+37            width: 40px;
+38            height: 40px;
+39            background: var(--primary);
+40            border-radius: 50%;
+41            display: flex;
+42            align-items: center;
+43            justify-content: center;
+44            font-weight: bold;
+45        }
+46        .chat-area {
+47            height: 300px;
+48            padding: 15px;
+49            overflow-y: auto;
+50            background: #e5ddd5;
+51            display: flex;
+52            flex-direction: column;
+53            gap: 10px;
+54        }
+55        .message {
+56            max-width: 70%;
+57            padding: 8px 12px;
+58            border-radius: 7px;
+59            font-size: 14px;
+60            position: relative;
+61        }
+62        .sent {
+63            align-self: flex-end;
+64            background: var(--light);
+65            border-top-right-radius: 0;
+66        }
+67        .received {
+68            align-self: flex-start;
+69            background: white;
+70            border-top-left-radius: 0;
+71        }
+72        .status {
+73            font-size: 10px;
+74            color: var(--gray);
+75            text-align: right;
+76            margin-top: 2px;
+77        }
+78        .controls {
+79            padding: 15px;
+80            border-top: 1px solid #eee;
+81            display: flex;
+82            gap: 10px;
+83        }
+84        input {
+85            flex: 1;
+86            padding: 10px;
+87            border: 1px solid #ddd;
+88            border-radius: 20px;
+89            outline: none;
+90        }
+91        button {
+92            background: var(--primary);
+93            border: none;
+94            color: white;
+95            padding: 10px 20px;
+96            border-radius: 20px;
+97            cursor: pointer;
+98            font-weight: bold;
+99        }
+100        button:disabled {
+101            background: var(--gray);
+102            cursor: not-allowed;
+103        }
+104        .log-panel {
+105            background: #333;
+106            color: #0f0;
+107            padding: 10px;
+108            font-family: monospace;
+109            font-size: 12px;
+110            height: 100px;
+111            overflow-y: scroll;
+112        }
+113    </style>
+114</head>
+115<body>
+116
+117<div class="container">
+118    <div class="header">
+119        <div class="avatar">WA</div>
+120        <div>
+121            <h3 style="margin:0">Business Tracker</h3>
+122            <small>API Status: <span style="color:#4caf50">Connected</span></small>
+123        </div>
+124    </div>
+125
+126    <div class="chat-area" id="chatArea">
+127        <!-- Messages will appear here -->
+128    </div>
+129
+130    <div class="log-panel" id="logPanel">
+131        > System initialized...<br>
+132        > Webhook listening...<br>
+133    </div>
+134
+135    <div class="controls">
+136        <input type="text" id="msgInput" placeholder="Type a message...">
+137        <button id="sendBtn" onclick="sendMessage()">Send</button>
+138    </div>
+139</div>
+140
+141<script>
+142    const chatArea = document.getElementById('chatArea');
+143    const msgInput = document.getElementById('msgInput');
+144    const sendBtn = document.getElementById('sendBtn');
+145    const logPanel = document.getElementById('logPanel');
+146
+147    // Simulate Sending Message
+148    function sendMessage() {
+149        const text = msgInput.value;
+150        if (!text) return;
+151
+152        // 1. Create Message UI (Status: Sending)
+153        const msgId = 'wamid.' + Math.random().toString(36).substr(2, 9);
+154        const msgDiv = document.createElement('div');
+155        msgDiv.className = 'message sent';
+156        msgDiv.id = msgId;
+157        
+158        msgDiv.innerHTML = `
+159            ${text}
+160            <div class="status" id="status-${msgId}">Sending...</div>
+161        `;
+162        
+163        chatArea.appendChild(msgDiv);
+164        chatArea.scrollTop = chatArea.scrollHeight;
+165        msgInput.value = '';
+166        sendBtn.disabled = true;
+167
+168        // 2. Log to Backend Console
+169        log(`> POST /send-message -> ID: ${msgId}`);
+170
+171        // 3. Simulate Network Delays (Sent -> Delivered -> Read)
+172        
+173        // Step A: Sent (1 second later)
+174        setTimeout(() => {
+175            updateStatus(msgId, 'Sent', '✓');
+176            log(`> Webhook received: status="sent" for ${msgId}`);
+177        }, 1000);
+178
+179        // Step B: Delivered (3 seconds later)
+180        setTimeout(() => {
+181            updateStatus(msgId, 'Delivered', '✓✓');
+182            log(`> Webhook received: status="delivered" for ${msgId}`);
+183        }, 3000);
+184
+185        // Step C: Read (6 seconds later)
+186        setTimeout(() => {
+187            updateStatus(msgId, 'Read', '✓✓', '#075E54');
+188            log(`> Webhook received: status="read" for ${msgId}`);
+189            
+190            // Enable button again
+191            sendBtn.disabled = false;
+192        }, 6000);
+193    }
+194
+195    function updateStatus(msgId, text, icon, color = '#999') {
+196        const statusEl = document.getElementById(`status-${msgId}`);
+197        if (statusEl) {
+198            statusEl.innerText = `${text} ${icon}`;
+199            statusEl.style.color = color;
+200        }
+201    }
+202
+203    function log(message) {
+204        const line = document.createElement('div');
+205        line.innerText = message;
+206        logPanel.appendChild(line);
+207        logPanel.scrollTop = logPanel.scrollHeight;
+208    }
+209
+210    // Allow pressing Enter to send
+211    msgInput.addEventListener('keypress', function (e) {
+212        if (e.key === 'Enter') sendMessage();
+213    });
+214</script>
+215
+216</body>
+217</html>
+
+ah
