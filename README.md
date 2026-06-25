@@ -1,2 +1,0 @@
-# MY-WEBSITE
-EcoSHop - Foodielist 
